@@ -1,2 +1,2 @@
 # Assembly programs
- These are all assemnly programs for computer organization and architecture
+ These are all assembly programs for computer organization and architecture
