@@ -1,0 +1,76 @@
+﻿///////////////
+// Daniel Jaffe
+// Date created 9/13/24
+// This program calculates a number's factorial
+///////////////
+
+
+input
+// numbering being multplied and getting smaller
+store num
+// keeping track of how many times being added together
+store count
+// keeps track of the final value
+store final
+// checks if first num is zero
+jump check_zero
+
+//restore count to original number and final to zero
+restore_count, 	load final
+				store count
+                subt final
+                store final
+				jump multiplication
+            
+// multiplies numbers
+multiplication, load final
+				add num
+				store final
+                load count
+                Subt one
+                store count
+                skipcond 800
+                jump check_ones
+				jump multiplication                
+
+// used for the first subtration of the number
+subtract_first,     load num
+					skipcond 800
+                    jump main
+                    subt one
+                    store num
+					jump multiplication
+                    
+// subtracts one from number 
+subtract_num,  	load num
+                    subt one
+                    store num
+					skipcond 800
+                    jump main
+					jump restore_count
+
+// checks if number is one
+check_ones, load num
+			subt one
+            Skipcond 800
+            jump main
+            Jump subtract_num
+            
+// checks if number is zero then output 1
+check_zero, load num
+             Skipcond 400
+             jump check_ones
+			 load final
+             add one
+             store final
+             jump main
+             
+// output the factorial
+main, load final
+      output
+  	  Halt
+
+num, dec 0
+one, dec 1
+final,dec 0 
+count,dec 0
