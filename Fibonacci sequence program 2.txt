@@ -1,0 +1,71 @@
+﻿///////////////
+// Daniel Jaffe
+// Date created 9/14/24
+// This program caclulates the fibonacci series of a number
+///////////////
+
+input
+// is the nth number in the fibonacci sequence
+store count 
+// check if number is 0 1 or 2
+jump checkinputnumber
+
+// check count to make sure it is above 0
+checkcount, load count
+            subt one
+            store count
+			Skipcond 800
+            jump main
+            jump addingtwonumbers
+
+// adding the two number
+addingtwonumbers, load prevnum1
+				  add  prevnum2
+                  store final
+                  store prevnum2
+                  load prevnum2
+                  subt prevnum1
+                  store prevnum1
+                  jump checkcount
+			      
+                  
+// checks the input number to see if it is 0 1 or 2 
+checkinputnumber, load count
+				   // if count is one send 0 to main
+                   subt one
+                   store count
+                   skipcond 800
+                   jump main
+                   // add one to final if not 0 and store in previous number 1
+                   load final
+                   add one
+                   store final
+                   store prevnum1
+                   // if 2 send 1 to main
+                   load count
+                   subt one
+                   store count
+                   skipcond 800
+                   jump main
+                   // store 1 in previous number 2
+                   load final
+                   store prevnum2
+                   // if 3 send 1 to main
+                   load count
+                   Subt one
+                   store count
+                   Skipcond 800
+                   jump main
+                   // else jump to adding numbers 
+                   jump addingtwonumbers
+
+// outputs the final number
+main, load final
+	  output
+	  halt  
+      
+prevnum1, dec 0
+prevnum2, dec 0
+one, dec 1
+final, dec 0 
+count, dec 0
